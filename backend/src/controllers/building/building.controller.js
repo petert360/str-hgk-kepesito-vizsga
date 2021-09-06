@@ -19,7 +19,8 @@ const service = require('./building.service');
 exports.updateBuilding = (req, res, next) => {
   const validationErrors = new Model(req.body).validateSync();
   if (validationErrors) {
-    return next(new createError.BadRequest(validationErrors));
+    //return next(new createError.BadRequest(validationErrors));
+    return next(new createError.BadRequest('Missing field'));
   }
 
   return service
