@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col-6 offset-3 mt-3">
+        <form #form="ngForm" (ngSubmit)="saveStudent(form)">
+            <div class="form-group">
+
+                <label for="firstName" class="form-label">FirstName:</label>
+                <input id="firstName" class="form-control" type="text" name="firstName"
+                    [(ngModel)]="studentForm.firstName" required #name="ngModel">
+
+                <label for="lastName" class="form-label">LastName:</label>
+                <input id="lastName" class="form-control" type="text" name="lastName"
+                    [(ngModel)]="studentForm.lastName" required #name="ngModel">
+
+                <label for="email" class="form-label">Email:</label>
+                <input id="email" class="form-control" type="text" name="email" [(ngModel)]="studentForm.email" required
+                #name="ngModel">
+            </div>
+            <button id="save-button" [disabled]="form.invalid" type="submit"
+                class="btn btn-primary w-100 mt-3 mb-3">
+                <i class="fas fa-save"></i>
+                Save Changes
+            </button>
+        </form>
+    </div>
+</div>
