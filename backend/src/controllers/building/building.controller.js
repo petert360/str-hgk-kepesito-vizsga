@@ -11,8 +11,31 @@
 
 const httpError = require('http-errors');
 
+const Model = require('../../models/building.model');
+const service = require('./building.service');
 
-exports.updateBuilding = (req, res, next) => {}
+//exports.updateBuilding = (req, res, next) => {};
 
+exports.updateBuilding = (req, res, next) => {
+  const validationErrors = new Model(req.body).validateSync();
+  if (validationErrors) {
+    return next(new createError.BadRequest(validationErrors));
+  }
 
-exports.getAllBuildingWithClassrooms = () => {};
+  return service
+    .update(req.params.id, req.body)
+    .then(entity => {
+      res.json(entity);
+    })
+    .catch(err => {
+      next(new createError.InternalServerError(err.message));
+    });
+};
+
+//exports.getAllBuildingWithClassrooms = () => {};
+
+exports.getAllBuildingWithClassrooms = (req, res, next) => {
+  return service.getAll().then(entity => {
+    res.json(entity);
+  });
+};

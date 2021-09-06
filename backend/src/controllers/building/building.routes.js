@@ -5,5 +5,21 @@
 const express = require('express');
 const router = express.Router();
 
+// read
+router.get('/', (req, res, next) => {
+  return controller.findAll(req, res, next);
+});
+
+router.get('/:id', (req, res, next) => {
+  return controller.findOne(req, res, next);
+});
+
+// update
+router.put('/:id', (req, res, next) => {
+  return controller.update(req, res, next);
+});
+router.patch('/:id', (req, res, next) => {
+  return controller.update(req, res, next);
+});
 
 module.exports = router;
